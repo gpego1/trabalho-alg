@@ -46,6 +46,11 @@ int main() {
 
                 printf("==== Iniciando %do turno ====\n", turno);
                 while(k < MIN_VOTOS) {
+                    printf("Numero - Nome");
+                    for (int i = 0; i < 6; i++) {
+                        printf("%d - %s \n", numeroCandidatos[i], nomes[i]);
+                        printf("%d - Voto branco\nQualquer outro numero - Anular", 0);
+                    }
                     scanf("%d", &voto);
                     if (voto == 0) {
                         votosBranco += 1;
@@ -156,6 +161,13 @@ int main() {
                 } else {
                     turno = 2;
                     printf("Iniciando %do turno\n", turno);
+
+                    for (int i = 0; i < 2; i++) {
+                        printf("%d - %s \n", primeiroClassificado, nomes[primeiroClassificado -1]);
+                        printf("%d - %s \n", segundoClassificado, nomes[segundoClassificado -1]); 
+                        printf("%d - Voto branco\nQualquer outro numero - Anular", 0);
+                    }
+
                     int k = 0;
                     totalVotos = 0;
                     votosBranco = 0;
