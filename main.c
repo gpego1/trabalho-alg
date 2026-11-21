@@ -32,6 +32,7 @@ int main() {
 
     do{
         printf("==== SISTEMA ELEITORAL ====\n");
+        printf("1 - INICIAR PRIMEIRO TURNO\n2 - APURAR 1o TURNO\n3 - INICIAR 2o TURNO\n4 - APURAR 2o TURNO\n0 - SAIR\n");
         scanf("%d", &input);
         if (input == 0) break;
 
@@ -46,11 +47,12 @@ int main() {
 
                 printf("==== Iniciando %do turno ====\n", turno);
                 while(k < MIN_VOTOS) {
-                    printf("Numero - Nome");
+                    printf("Numero - Nome\n");
                     for (int i = 0; i < 6; i++) {
                         printf("%d - %s \n", numeroCandidatos[i], nomes[i]);
-                        printf("%d - Voto branco\nQualquer outro numero - Anular", 0);
                     }
+                    printf("%d - Voto branco\nQualquer outro numero - Anular\n", 0);
+
                     scanf("%d", &voto);
                     if (voto == 0) {
                         votosBranco += 1;
