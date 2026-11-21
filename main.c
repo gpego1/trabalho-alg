@@ -210,9 +210,12 @@ int main() {
             case(4):
                 if (apuracao == 4) {
                     printf("Não houveram votos válidos durante a apuracao.\n");
-                }else if (apuracao == 5) {
+                } else if (apuracao == 5) {
                     printf("A apuracao do segundo turno nao obteve votos validos. \n");
-                }else if (apuracao == 2 && turno == 2 && totalVotos >= MIN_VOTOS) {
+                } else if (apuracao == 1 && vencedor != 0) {
+                    printf("%s venceu no primeiro turno", nomes[indexVencedor]);
+                } 
+                else if (apuracao == 2 && turno == 2 && totalVotos >= MIN_VOTOS) {
                     int votosValidosSegundoTurno = totalVotos - votosBranco - votosNulo;
 
                     if (votosValidosSegundoTurno <= 0) {
