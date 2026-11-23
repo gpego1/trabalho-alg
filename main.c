@@ -3,7 +3,7 @@
 #define MIN_VOTOS 100
 
 int main() {
-
+    // Anexacao de variaveis
     char nomes[NUM_CANDIDATOS][50] = {
         "Ana Silva",
         "Bruno Costa",
@@ -27,10 +27,13 @@ int main() {
     int primeiroClassificado = 0;
     int segundoClassificado = 0;
     int indexVencedor = 0;
+
+    // Var de controle de estado para controlar as etapas de votacao que o sistema ja passou ou nao
     int apuracao = 0;
     int primeiroTurnoConcluido = 0;
 
     do{
+        // Menu de boas-vindas
         printf("==== SISTEMA ELEITORAL ====\n");
         printf("1 - INICIAR PRIMEIRO TURNO\n2 - APURAR 1o TURNO\n3 - INICIAR 2o TURNO\n4 - APURAR 2o TURNO\n0 - SAIR\n");
         scanf("%d", &input);
@@ -38,13 +41,16 @@ int main() {
 
         switch(input) {
             case(1): {
+                // Verifica se primeiro turno ja nao foi concluido antes
                 if (primeiroTurnoConcluido == 1 || turno != 1) {
                     printf("A apuracao do 1 turno ja foi feita.\n");
                     break;
                 }
+                // variavel k para icrementar a cada execucao do loop
                 int k = 0;
                 int voto;
 
+                // inicia primeiro turno
                 printf("==== Iniciando %do turno ====\n", turno);
                 while(k < MIN_VOTOS) {
                     printf("Numero - Nome\n");
@@ -72,6 +78,8 @@ int main() {
                 do {
                     printf("Deseja continuar votando? (S/N)\n");
                     scanf(" %c", &resp);
+
+                    // Verifica se o usuario deseja adicionar mais um voto ou nao (enquanto a resposta (resp) for diferente de n ou N
                     if (resp == 's' || resp == 'S') {
                         scanf("%d", &voto);
                         if (voto == 0) {
@@ -91,10 +99,12 @@ int main() {
                         continue;
                     } 
                 } while (resp != 'N' && resp != 'n');
+                    // primeiroTurnoConcluido recebe 1 para indicar que o primeiro turno foi concluido
                     primeiroTurnoConcluido = 1;
                     break;
             }
             case(2):
+                // Valida se o primeiro turno ja foi concluido
                 if (apuracao == 1 ||apuracao == 4) {
                     printf("O primeiro turno ja foi apurado.\n");
                     break;
@@ -106,8 +116,10 @@ int main() {
                 }
 
                 if (totalVotos > 0 && turno == 1) {
+                    // Instancia de variavel para medir os votos validos
                     int votosValidos =  totalVotos - votosBranco - votosNulo;
 
+                    // Verifica se realmente houveram votos validos
                     if (votosValidos <= 0) {
                         printf("Não foi possível concluir a operaação devido à ausencia de votos validos.\n");
                         apuracao = 4;
@@ -128,7 +140,7 @@ int main() {
                                  percentual
                                 );
 
-
+                            // Verifica se houve vecedor no primeiro turno de acordo com o percentual de votos do candidato. Caso nao, armazena o numero e a quantidade de votos dos dois mais votados. Caso ocorra empate, a prioridade eh daquele que vir primeiro
                             if (percentual > 50.0) {
                                 vencedor = numeroCandidatos[i];
                                 indexVencedor = i;
@@ -149,6 +161,7 @@ int main() {
                         } else {
                             printf("%s Venceu no primeiro turno!\n", nomes[indexVencedor]);
                         }
+                        // apuracao recebe 1 para indicar que a apuracao do primeiro turno foi concluida
                         apuracao = 1;
                     }
                 } else {
@@ -157,6 +170,7 @@ int main() {
                 break;
                 
             case(3):
+                // Faz validacoes para verificar se o segundo turno realmente deve ser iniciado. Candidatos que podem receber votos sao apenas o primeiro e segundo classificados
                 if (apuracao == 4) {
                     printf("Não houveram votos válidos durante a apuração.\n");
                     break;
@@ -232,6 +246,7 @@ int main() {
                 }
                 break; 
             case(4):
+                // verifica se o primeiro e segundo turno foram encerrados. Se sim, exibe a apuracao do 2 turno. Senão, exibe mensagens de erro
                 if (apuracao == 4) {
                     printf("Não houveram votos válidos durante a apuracao.\n");
                 } else if (apuracao == 5) {
