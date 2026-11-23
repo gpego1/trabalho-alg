@@ -132,7 +132,6 @@ int main() {
                             if (percentual > 50.0) {
                                 vencedor = numeroCandidatos[i];
                                 indexVencedor = i;
-                                printf("%s Venceu no primeiro turno\n", nomes[indexVencedor]);
                             } else if (historico[turno -1][i] > votosPrimeiroColocado) {
                                     votosSegundoColocado = votosPrimeiroColocado;
                                     segundoClassificado = primeiroClassificado;
@@ -147,6 +146,8 @@ int main() {
                         }
                         if (vencedor == 0) {
                             printf("Segundo turno entre: %s e %s\n", nomes[primeiroClassificado -1], nomes[segundoClassificado -1]);
+                        } else {
+                            printf("%s Venceu no primeiro turno!\n", nomes[indexVencedor]);
                         }
                         apuracao = 1;
                     }
@@ -176,19 +177,20 @@ int main() {
 
                     printf("Iniciando %do turno\n", turno);
 
-                    for (int i = 0; i < 2; i++) {
+
+
+                    while (k != MIN_VOTOS) {
+
+                        
                         printf("%d - %s \n", primeiroClassificado, nomes[primeiroClassificado -1]);
                         printf("%d - %s \n", segundoClassificado, nomes[segundoClassificado -1]); 
                         printf("%d - Voto branco\nQualquer outro numero - Anular\n", 0);
-                    }
-
+        
                     
 
-                    for (int i = 0; i < NUM_CANDIDATOS; i++) {
-                        votos[i] = 0;
+                        for (int i = 0; i < NUM_CANDIDATOS; i++) {
+                            votos[i] = 0;
                     }
-
-                    while (k != MIN_VOTOS) {
                         scanf("%d", &voto);
                         if (voto == 0) {
                             votosBranco += 1;
