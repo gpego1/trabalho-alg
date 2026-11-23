@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define NUM_CANDIDATOS 6
-#define MIN_VOTOS 100
+#define MIN_VOTOS 5
 
 int main() {
 
@@ -132,6 +132,7 @@ int main() {
                             if (percentual > 50.0) {
                                 vencedor = numeroCandidatos[i];
                                 indexVencedor = i;
+                                printf("%s Venceu no primeiro turno", nomes[indexVencedor]);
                             } else if (historico[turno -1][i] > votosPrimeiroColocado) {
                                     votosSegundoColocado = votosPrimeiroColocado;
                                     segundoClassificado = primeiroClassificado;
@@ -162,6 +163,13 @@ int main() {
                     printf("O segundo turno ja foi iniciado.\n");
                 } else {
                     turno = 2;
+                    int k = 0;
+                    totalVotos = 0;
+                    votosBranco = 0;
+                    votosNulo = 0;
+                    int voto = 0;
+                    char resp;
+                    
                     printf("Iniciando %do turno\n", turno);
 
                     for (int i = 0; i < 2; i++) {
@@ -170,12 +178,7 @@ int main() {
                         printf("%d - Voto branco\nQualquer outro numero - Anular", 0);
                     }
 
-                    int k = 0;
-                    totalVotos = 0;
-                    votosBranco = 0;
-                    votosNulo = 0;
-                    int voto = 0;
-                    char resp;
+                    
 
                     for (int i = 0; i < NUM_CANDIDATOS; i++) {
                         votos[i] = 0;
