@@ -27,6 +27,7 @@ int main() {
     int primeiroClassificado = 0;
     int segundoClassificado = 0;
     int indexVencedor = 0;
+    int i;
 
     // Var de controle de estado para controlar as etapas de votacao que o sistema ja passou ou nao
     int apuracao = 0;
@@ -54,7 +55,7 @@ int main() {
                 printf("==== Iniciando %do turno ====\n", turno);
                 while(k < MIN_VOTOS) {
                     printf("Numero - Nome\n");
-                    for (int i = 0; i < 6; i++) {
+                    for (i = 0; i < 6; i++) {
                         printf("%d - %s \n", numeroCandidatos[i], nomes[i]);
                     }
                     printf("%d - Voto branco\nQualquer outro numero - Anular\n", 0);
@@ -95,7 +96,7 @@ int main() {
                         totalVotos += 1;
                         k += 1;
                     } else if (resp != 'S' && resp != 's' && resp != 'N' && resp != 'n') {
-                        printf("Entrada inválida, digite 'S' para continuar e 'N' para encerrar.\n");
+                        printf("Entrada invÃ¡lida, digite 'S' para continuar e 'N' para encerrar.\n");
                         continue;
                     } 
                 } while (resp != 'N' && resp != 'n');
@@ -121,7 +122,7 @@ int main() {
 
                     // Verifica se realmente houveram votos validos
                     if (votosValidos <= 0) {
-                        printf("Não foi possível concluir a operaação devido à ausencia de votos validos.\n");
+                        printf("NÃ£o foi possÃ­vel concluir a operaaÃ§Ã£o devido Ã  ausencia de votos validos.\n");
                         apuracao = 4;
                         break;
                     } else {
@@ -131,7 +132,7 @@ int main() {
                         votosBranco,(float) votosBranco/totalVotos * 100, votosNulo, (float) votosNulo/totalVotos * 100);
 
                         printf("Numero  Candidato   Votos   %% dos validos \n");
-                        for (int i = 0; i < 6; i++) {
+                        for (i = 0; i < 6; i++) {
                             float percentual = (float) historico[turno -1][i] / votosValidos * 100;
                             printf("%d - %s - %d - %.1f%%\n",
                                  numeroCandidatos[i], 
@@ -165,19 +166,19 @@ int main() {
                         apuracao = 1;
                     }
                 } else {
-                    printf("Não houveram votos no %do turno.\n", turno);                
+                    printf("NÃ£o houveram votos no %do turno.\n", turno);                
                 }
                 break;
                 
             case(3):
                 // Faz validacoes para verificar se o segundo turno realmente deve ser iniciado. Candidatos que podem receber votos sao apenas o primeiro e segundo classificados
                 if (apuracao == 4) {
-                    printf("Não houveram votos válidos durante a apuração.\n");
+                    printf("NÃ£o houveram votos vÃ¡lidos durante a apuraÃ§Ã£o.\n");
                     break;
                 } else if (apuracao == 0) {
                     printf("Faca a apuracao do primeiro turno antes de prosseguir para esta etapa.\n");
                 } else if (vencedor != 0) {
-                    printf("As eleições já foram encerradas no primeiro turno, e o vencedor foi %s \n", nomes[indexVencedor]);
+                    printf("As eleiÃ§Ãµes jÃ¡ foram encerradas no primeiro turno, e o vencedor foi %s \n", nomes[indexVencedor]);
                 } else if (turno == 2) {
                     printf("O segundo turno ja foi iniciado.\n");
                 } else {
@@ -192,17 +193,12 @@ int main() {
                     printf("Iniciando %do turno\n", turno);
 
 
-
                     while (k != MIN_VOTOS) {
-
-                        
                         printf("%d - %s \n", primeiroClassificado, nomes[primeiroClassificado -1]);
                         printf("%d - %s \n", segundoClassificado, nomes[segundoClassificado -1]); 
                         printf("%d - Voto branco\nQualquer outro numero - Anular\n", 0);
         
-                    
-
-                        for (int i = 0; i < NUM_CANDIDATOS; i++) {
+                        for (i = 0; i < NUM_CANDIDATOS; i++) {
                             votos[i] = 0;
                     }
                         scanf("%d", &voto);
@@ -237,7 +233,7 @@ int main() {
                             totalVotos += 1;
                             k += 1;
                         } else if (resp != 'S' && resp != 's' && resp != 'N' && resp != 'n') {
-                            printf("Entrada inválida, digite 'S' para continuar e 'N' para encerrar.\n");
+                            printf("Entrada invÃ¡lida, digite 'S' para continuar e 'N' para encerrar.\n");
                             continue;
                         } 
                     } while (resp != 'N' && resp != 'n');
@@ -246,9 +242,9 @@ int main() {
                 }
                 break; 
             case(4):
-                // verifica se o primeiro e segundo turno foram encerrados. Se sim, exibe a apuracao do 2 turno. Senão, exibe mensagens de erro
+                // verifica se o primeiro e segundo turno foram encerrados. Se sim, exibe a apuracao do 2 turno. SenÃ£o, exibe mensagens de erro
                 if (apuracao == 4) {
-                    printf("Não houveram votos válidos durante a apuracao.\n");
+                    printf("NÃ£o houveram votos vÃ¡lidos durante a apuracao.\n");
                 } else if (apuracao == 5) {
                     printf("A apuracao do segundo turno nao obteve votos validos. \n");
                 } else if (apuracao == 1 && vencedor != 0) {
@@ -258,7 +254,7 @@ int main() {
                     int votosValidosSegundoTurno = totalVotos - votosBranco - votosNulo;
 
                     if (votosValidosSegundoTurno <= 0) {
-                        printf("Não foi possível determinar a quantidade de votos válidos.\n");
+                        printf("NÃ£o foi possÃ­vel determinar a quantidade de votos vÃ¡lidos.\n");
                         apuracao = 5;
                         break;
                     } else {
@@ -268,7 +264,7 @@ int main() {
                         votosBranco,(float) votosBranco/totalVotos * 100, votosNulo, (float) votosNulo/totalVotos * 100);
 
                         printf("Numero  Candidato   Votos   %% dos validos \n");
-                        for (int i = 0; i < 2; i++) {
+                        for (i = 0; i < 2; i++) {
                             int candidatoSegTurno;
 
                             if (i == 0) {
@@ -311,7 +307,7 @@ int main() {
                 break;
                 
             default:
-                printf("Erro inesperado, renicie a aplicação!\n");
+                printf("Erro inesperado, renicie a aplicaÃ§Ã£o!\n");
         
     }} while (1);
 
